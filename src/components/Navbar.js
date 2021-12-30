@@ -15,9 +15,13 @@ import React from "react";
 
 const pages = ["Home", "Advanced Search", "Contact"];
 
-const useStyles = makeStyles({
-  navDiv: {},
-  appBar: { opacity: 1, backgroundColor: "red!important" },
+const useStyles = makeStyles((theme) => ({
+  navDiv: { display: "flex" },
+  appBar: {
+    display: "flex",
+    opacity: 1,
+    backgroundColor: "red!important",
+  },
   toolBar: {},
   navComponent: { flexGrow: 1, display: "flex" },
   navLeft: { flex: 1 },
@@ -25,7 +29,7 @@ const useStyles = makeStyles({
     flex: 1,
     justifyContent: "space-between",
   },
-});
+}));
 
 // Navbar
 const Navbar = () => {
@@ -42,7 +46,7 @@ const Navbar = () => {
   const classes = useStyles();
   return (
     <Box className={classes.navDiv}>
-      <AppBar className={classes.appBar} position="fixed">
+      <AppBar className={classes.appBar} position="static">
         <Container maxWidth="xl">
           <Toolbar>
             <Typography
