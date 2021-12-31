@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React from "react";
+import FoodCard from "./FoodCard";
 import SideMenu from "./SideMenu";
 
 const useStyles = makeStyles({
@@ -17,7 +18,9 @@ const RandomMeal = ({ pickNow }) => {
         <Box className={classes.selectorContainer}>
           <SideMenu pickNow={pickNow} />
         </Box>
-        <Box className={classes.foodContainer}></Box>
+        <Box className={classes.foodContainer}>
+          <FoodCard />
+        </Box>
       </Box>
     </div>
   );
