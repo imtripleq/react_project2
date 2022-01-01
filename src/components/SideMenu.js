@@ -7,11 +7,14 @@ const useStyles = makeStyles({
     display: "flex",
     width: "150px",
     height: "150px",
-    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
   },
   buttonContainer: {},
+  button: {
+    backgroundColor: "white!important",
+    "&:hover": { backgroundColor: "yellow!important" },
+  },
 });
 
 const SideMenu = ({ pickNow }) => {
@@ -19,7 +22,7 @@ const SideMenu = ({ pickNow }) => {
   return (
     <Box className={classes.container}>
       <Box className={classes.buttonContainer}>
-        <Button color="primary" variant="outlined" onClick={pickNow}>
+        <Button className={classes.button} variant="outlined" onClick={pickNow}>
           Pick now
         </Button>
       </Box>

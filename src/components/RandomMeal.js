@@ -13,7 +13,6 @@ const useStyles = makeStyles({
 
   selectorContainer: {
     flex: 1,
-    backgroundColor: "blue",
     display: "flex",
     justifyContent: "center",
     maxWidth: "200px",

@@ -16,14 +16,15 @@ const Home = () => {
         const { image, summary, instructions, title } = data.recipes[0];
 
         setImage(image);
-        setSummary(summary);
-        setInstructions(instructions);
+        setSummary(summary.replace(/<\/?[^>]+(>|$)/g, ""));
+        setInstructions(instructions.replace(/<\/?[^>]+(>|$)/g, ""));
         setTitle(title);
         console.log(data);
       })
     );
   };
   console.log(instructions);
+  console.log(instructions.replace(/<\/?[^>]+(>|$)/g, ""));
   return (
     <div>
       <Navbar />
