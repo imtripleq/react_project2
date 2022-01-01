@@ -8,7 +8,10 @@ const useStyles = makeStyles({
     width: "150px",
     height: "150px",
     backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
   },
+  buttonContainer: {},
 });
 
 const SideMenu = ({ pickNow }) => {
@@ -16,7 +19,9 @@ const SideMenu = ({ pickNow }) => {
   return (
     <Box className={classes.container}>
       <Box className={classes.buttonContainer}>
-        <Button onClick={pickNow}>Pick now</Button>
+        <Button color="primary" variant="outlined" onClick={pickNow}>
+          Pick now
+        </Button>
       </Box>
     </Box>
   );
