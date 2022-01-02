@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   },
 });
 const AdvancedSearch = ({}) => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState({ data: "", loading: false });
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
@@ -38,11 +38,10 @@ const AdvancedSearch = ({}) => {
     const res = await axios.get(
       `https://api.spoonacular.com/recipes/complexSearch?cuisine=${cuisine}&apiKey=2d6e32c38391484998e157bd4097cd33`
     );
-    setPosts(res.data);
-    setLoading(false);
+    setPosts({ data: res.data, loading: true });
   };
 
-  console.log(posts.results);
+  console.log(posts.loading);
   const classes = useStyles();
   return (
     <div>
@@ -52,7 +51,7 @@ const AdvancedSearch = ({}) => {
           <AdvancedSideMenu pickNow={fetchPosts} />
         </Box>
         <Box className={classes.foodContainer}>
-          <ListMeal posts={posts} loading={loading} />
+          <ListMeal posts={posts.data} loading={posts.loading} />
         </Box>
       </Box>
     </div>

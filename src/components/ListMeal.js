@@ -13,6 +13,14 @@ const useStyles = makeStyles({
   },
   cardContainer: {
     margin: "10px 10px",
+    display: "flex",
+    flexWrap: "wrap",
+  },
+  card: {
+    margin: "0px 5px",
+    maxWidth: "150px",
+    maxHeight: "400px",
+    height: "500px",
   },
 });
 
@@ -28,7 +36,9 @@ const ListMeal = ({ posts, loading }) => {
       <Box className={classes.cardContainer}>
         {posts.results.map((item) => {
           return (
-            <FoodCard ket={item.id} image={item.image} title={item.title} />
+            <Box className={classes.card}>
+              <FoodCard key={item.id} image={item.image} title={item.title} />
+            </Box>
           );
         })}
       </Box>
