@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React, { useState } from "react";
-import { cuisine } from "../data";
+import { cuisines } from "../data";
 
 const useStyles = makeStyles({
   container: {
@@ -25,17 +25,18 @@ const useStyles = makeStyles({
     "&:hover": { backgroundColor: "yellow!important" },
   },
   selectContainer: { margin: "20px 0px" },
+  select: {},
 });
 
 const AdvancedSideMenu = ({ pickNow }) => {
-  const [age, setAge] = useState("");
+  const [cuisine, setCuisine] = useState("");
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setCuisine(event.target.value);
   };
 
   const classes = useStyles();
-  console.log(age);
+  console.log(cuisine);
   return (
     <Box className={classes.container}>
       <Box className={classes.selectContainer} sx={{ minWidth: 120 }}>
@@ -44,11 +45,12 @@ const AdvancedSideMenu = ({ pickNow }) => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={age}
+            value={cuisine}
             label="Cuisine"
             onChange={handleChange}
+            className={classes.select}
           >
-            {cuisine.map((item) => {
+            {cuisines.map((item) => {
               return (
                 <MenuItem key={item} value={item}>
                   {item}
@@ -59,7 +61,13 @@ const AdvancedSideMenu = ({ pickNow }) => {
         </FormControl>
       </Box>
       <Box className={classes.buttonContainer}>
-        <Button className={classes.button} variant="outlined" onClick={pickNow}>
+        <Button
+          className={classes.button}
+          variant="outlined"
+          onClick={() => {
+            pickNow(cuisine);
+          }}
+        >
           Pick now
         </Button>
       </Box>

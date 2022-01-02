@@ -1,4 +1,4 @@
-export const cuisine = [
+export const cuisines = [
   "African",
   "American",
   "British",

@@ -1,9 +1,11 @@
 import { Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AdvancedSideMenu from "../components/AdvancedSideMenu";
 import Navbar from "../components/Navbar";
 import RandomMeal from "../components/RandomMeal";
+import axios from "axios";
+import ListMeal from "../components/ListMeal";
 
 const useStyles = makeStyles({
   container: {
@@ -25,22 +27,32 @@ const useStyles = makeStyles({
     maxHeight: "100%",
   },
 });
-const AdvancedSearch = ({ pickNow, image, summary, instructions, title }) => {
+const AdvancedSearch = ({}) => {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
+
+  const fetchPosts = async (cuisine = "Chinese") => {
+    setLoading(true);
+    const res = await axios.get(
+      `https://api.spoonacular.com/recipes/complexSearch?cuisine=${cuisine}&apiKey=2d6e32c38391484998e157bd4097cd33`
+    );
+    setPosts(res.data);
+    setLoading(false);
+  };
+
+  console.log(posts.results);
   const classes = useStyles();
   return (
     <div>
       <Navbar />
       <Box className={classes.container}>
         <Box className={classes.selectorContainer}>
-          <AdvancedSideMenu />
+          <AdvancedSideMenu pickNow={fetchPosts} />
         </Box>
         <Box className={classes.foodContainer}>
-          <RandomMeal
-            image={image}
-            summary={summary}
-            instructions={instructions}
-            title={title}
-          />
+          <ListMeal posts={posts} loading={loading} />
         </Box>
       </Box>
     </div>
