@@ -25,3 +25,9 @@ export const cuisines = [
   "Thai",
   "Vietnamese",
 ];
+
+export const pages = [
+  { page: "Home", route: "/" },
+  { page: "Advanced Search", route: "/advanced" },
+  { page: "Contact", route: "/contact" },
+];

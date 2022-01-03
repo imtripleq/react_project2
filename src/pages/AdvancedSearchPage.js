@@ -17,6 +17,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     maxWidth: "200px",
+    backgroundColor: "white",
   },
   foodContainer: {
     backgroundColor: "white",

@@ -3,14 +3,18 @@ import Home from "./pages/Home";
 import theme from "./globalTheme";
 import "./App.css";
 import AdvancedSearch from "./pages/AdvancedSearchPage";
+import { Route, Routes } from "react-router-dom";
 
 const App = () => {
   return (
-    <div>
+    <>
       <ThemeProvider theme={theme}>
-        <AdvancedSearch />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/advanced" element={<AdvancedSearch />} />
+        </Routes>
       </ThemeProvider>
-    </div>
+    </>
   );
 };
 

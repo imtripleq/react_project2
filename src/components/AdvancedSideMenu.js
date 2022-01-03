@@ -21,8 +21,8 @@ const useStyles = makeStyles({
   },
   buttonContainer: {},
   button: {
-    backgroundColor: "white!important",
-    "&:hover": { backgroundColor: "yellow!important" },
+    backgroundColor: "#EEEEEE!important",
+    "&:hover": { backgroundColor: "#BC8CF2!important" },
   },
   selectContainer: { margin: "20px 0px" },
   select: {},

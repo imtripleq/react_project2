@@ -12,8 +12,8 @@ import {
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React from "react";
-
-const pages = ["Home", "Advanced Search", "Contact"];
+import { Link } from "react-router-dom";
+import { pages } from "../data";
 
 const useStyles = makeStyles((theme) => ({
   navDiv: { display: "flex" },
@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     justifyContent: "space-between",
   },
+  navList: { textDecoration: "none", color: "inherit" },
 }));
 
 // Navbar
@@ -92,8 +93,10 @@ const Navbar = () => {
                 }}
               >
                 {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
+                  <MenuItem key={page.page} onClick={handleCloseNavMenu}>
+                    <Link to={page.route} className={classes.navList}>
+                      <Typography textAlign="center">{page.page}</Typography>
+                    </Link>
                   </MenuItem>
                 ))}
               </Menu>
@@ -119,11 +122,11 @@ const Navbar = () => {
               >
                 {pages.map((page) => (
                   <Button
-                    key={page}
+                    key={page.page}
                     onClick={handleCloseNavMenu}
                     sx={{ my: 2, color: "white", display: "block", opacity: 1 }}
                   >
-                    {page}
+                    {page.page}
                   </Button>
                 ))}
               </Box>
