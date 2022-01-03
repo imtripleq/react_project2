@@ -36,7 +36,7 @@ const AdvancedSideMenu = ({ pickNow }) => {
   };
 
   const classes = useStyles();
-  console.log(cuisine);
+
   return (
     <Box className={classes.container}>
       <Box className={classes.selectContainer} sx={{ minWidth: 120 }}>

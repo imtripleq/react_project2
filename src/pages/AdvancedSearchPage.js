@@ -1,9 +1,8 @@
-import { Box } from "@mui/material";
+import { Box, Pagination } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import AdvancedSideMenu from "../components/AdvancedSideMenu";
 import Navbar from "../components/Navbar";
-import RandomMeal from "../components/RandomMeal";
 import axios from "axios";
 import ListMeal from "../components/ListMeal";
 
@@ -20,28 +19,48 @@ const useStyles = makeStyles({
     maxWidth: "200px",
   },
   foodContainer: {
+    backgroundColor: "white",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    width: "80%",
+  },
+  listMealContainer: {
     flex: 3,
     backgroundColor: "white",
     display: "flex",
     justifyContent: "center",
-    maxHeight: "100%",
+    maxHeight: "80%",
   },
 });
-const AdvancedSearch = ({}) => {
-  const [posts, setPosts] = useState({ data: "", loading: false });
+const AdvancedSearch = () => {
+  const [posts, setPosts] = useState({ results: [] });
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
+  const [postsPerPage] = useState(5);
 
   const fetchPosts = async (cuisine = "Chinese") => {
-    setLoading(true);
     const res = await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?cuisine=${cuisine}&apiKey=2d6e32c38391484998e157bd4097cd33`
+      `https://api.spoonacular.com/recipes/complexSearch?cuisine=${cuisine}&number=100&apiKey=2d6e32c38391484998e157bd4097cd33`
     );
-    setPosts({ data: res.data, loading: true });
+
+    setPosts(res.data);
+
+    setLoading(true);
   };
 
-  console.log(posts.loading);
+  //Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.results.slice(indexOfFirstPost, indexOfLastPost);
+  const pageNumbers = Math.ceil(posts.results.length / postsPerPage);
+
+  //Change Page
+  const [page] = useState(1);
+  const handlePage = (e, value) => {
+    setCurrentPage(value);
+  };
+  console.log(page);
   const classes = useStyles();
   return (
     <div>
@@ -51,7 +70,15 @@ const AdvancedSearch = ({}) => {
           <AdvancedSideMenu pickNow={fetchPosts} />
         </Box>
         <Box className={classes.foodContainer}>
-          <ListMeal posts={posts.data} loading={posts.loading} />
+          <Box className={classes.listMealContainer}>
+            <ListMeal posts={currentPosts} loading={loading} />
+          </Box>
+          <Box className={classes.pagination}>
+            <Pagination
+              count={loading ? pageNumbers : 1}
+              onChange={handlePage}
+            />
+          </Box>
         </Box>
       </Box>
     </div>

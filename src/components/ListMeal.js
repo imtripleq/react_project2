@@ -34,10 +34,10 @@ const ListMeal = ({ posts, loading }) => {
   return (
     <div>
       <Box className={classes.cardContainer}>
-        {posts.results.map((item) => {
+        {posts.map((item) => {
           return (
-            <Box className={classes.card}>
-              <FoodCard key={item.id} image={item.image} title={item.title} />
+            <Box className={classes.card} key={item.id}>
+              <FoodCard image={item.image} title={item.title} />
             </Box>
           );
         })}
