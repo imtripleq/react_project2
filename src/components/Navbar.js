@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
   navRight: {
     flex: 1,
     justifyContent: "space-between",
+    maxWidth: "400px",
   },
   navList: { textDecoration: "none", color: "inherit" },
 }));
@@ -126,7 +127,9 @@ const Navbar = () => {
                     onClick={handleCloseNavMenu}
                     sx={{ my: 2, color: "white", display: "block", opacity: 1 }}
                   >
-                    {page.page}
+                    <Link to={page.route} className={classes.navList}>
+                      {page.page}
+                    </Link>
                   </Button>
                 ))}
               </Box>

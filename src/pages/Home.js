@@ -30,6 +30,7 @@ const Home = () => {
   const [summary, setSummary] = useState("");
   const [instructions, setInstructions] = useState("");
   const [title, setTitle] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleClick = () => {
     fetch(
@@ -42,7 +43,7 @@ const Home = () => {
         setSummary(summary.replace(/<\/?[^>]+(>|$)/g, ""));
         setInstructions(instructions.replace(/<\/?[^>]+(>|$)/g, ""));
         setTitle(title);
-        console.log(data);
+        setLoading(true);
       })
     );
   };
@@ -57,12 +58,14 @@ const Home = () => {
           <SideMenu pickNow={handleClick} />
         </Box>
         <Box className={classes.foodContainer}>
-          <RandomMeal
-            image={image}
-            summary={summary}
-            instructions={instructions}
-            title={title}
-          />
+          {loading ? (
+            <RandomMeal
+              image={image}
+              summary={summary}
+              instructions={instructions}
+              title={title}
+            />
+          ) : null}
         </Box>
       </Box>
     </div>

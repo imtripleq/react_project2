@@ -5,10 +5,12 @@ import AdvancedSideMenu from "../components/AdvancedSideMenu";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import ListMeal from "../components/ListMeal";
+import Footer from "../components/Footer";
 
 const useStyles = makeStyles({
+  page: { height: "100vh", display: "flex", flexDirection: "column" },
   container: {
-    height: "100vh",
+    height: "100%",
     width: "100%",
     display: "flex",
   },
@@ -16,15 +18,16 @@ const useStyles = makeStyles({
     flex: 1,
     display: "flex",
     justifyContent: "center",
-    maxWidth: "200px",
-    backgroundColor: "white",
+    maxWidth: "400px",
+    width: "200px",
+    backgroundColor: "#F4F3F3",
   },
   foodContainer: {
     backgroundColor: "white",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: "80%",
+    width: "100%",
   },
   listMealContainer: {
     flex: 3,
@@ -46,7 +49,6 @@ const AdvancedSearch = () => {
     );
 
     setPosts(res.data);
-
     setLoading(true);
   };
 
@@ -61,10 +63,9 @@ const AdvancedSearch = () => {
   const handlePage = (e, value) => {
     setCurrentPage(value);
   };
-  console.log(page);
   const classes = useStyles();
   return (
-    <div>
+    <Box className={classes.page}>
       <Navbar />
       <Box className={classes.container}>
         <Box className={classes.selectorContainer}>
@@ -75,14 +76,16 @@ const AdvancedSearch = () => {
             <ListMeal posts={currentPosts} loading={loading} />
           </Box>
           <Box className={classes.pagination}>
-            <Pagination
-              count={loading ? pageNumbers : 1}
-              onChange={handlePage}
-            />
+            {loading ? (
+              <Pagination count={pageNumbers} onChange={handlePage} />
+            ) : null}
           </Box>
         </Box>
       </Box>
-    </div>
+      <Box className={classes.footerContainer}>
+        <Footer />
+      </Box>
+    </Box>
   );
 };
 
