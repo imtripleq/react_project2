@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import axios from "axios";
 import ListMeal from "../components/ListMeal";
 import Footer from "../components/Footer";
+import CustomRecipe from "../components/CustomRecipe";
 
 const useStyles = makeStyles({
   page: { height: "100vh", display: "flex", flexDirection: "column" },
@@ -42,6 +43,8 @@ const AdvancedSearch = () => {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
+  const [recipe, setRecipe] = useState({ results: [] });
+  const [recipeLoading, setRecipeLoading] = useState(false);
 
   const fetchPosts = async (cuisine = "Chinese") => {
     const res = await axios.get(
@@ -50,6 +53,7 @@ const AdvancedSearch = () => {
 
     setPosts(res.data);
     setLoading(true);
+    setRecipeLoading(false);
   };
 
   //Get current posts
@@ -59,10 +63,22 @@ const AdvancedSearch = () => {
   const pageNumbers = Math.ceil(posts.results.length / postsPerPage);
 
   //Change Page
-  const [page] = useState(1);
   const handlePage = (e, value) => {
     setCurrentPage(value);
   };
+
+  //Recipe expand
+
+  const handleRecipe = async (id) => {
+    const res = await axios.get(
+      `https://api.spoonacular.com/recipes/${id}/information?apiKey=2d6e32c38391484998e157bd4097cd33`
+    );
+    setRecipe(res.data);
+    setLoading(false);
+    setRecipeLoading(true);
+    console.log(recipe);
+  };
+
   const classes = useStyles();
   return (
     <Box className={classes.page}>
@@ -73,7 +89,17 @@ const AdvancedSearch = () => {
         </Box>
         <Box className={classes.foodContainer}>
           <Box className={classes.listMealContainer}>
-            <ListMeal posts={currentPosts} loading={loading} />
+            {!recipeLoading ? (
+              <ListMeal
+                posts={currentPosts}
+                loading={loading}
+                handleRecipe={handleRecipe}
+              />
+            ) : null}
+
+            {recipeLoading ? (
+              <CustomRecipe recipe={recipe} recipeLoading={recipeLoading} />
+            ) : null}
           </Box>
           <Box className={classes.pagination}>
             {loading ? (

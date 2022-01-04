@@ -8,6 +8,7 @@ const Footer = () => {
     container: {
       height: "10vh",
       maxHeight: "150px",
+      maxWidth: "800px",
       display: "flex",
       justifyContent: "space-between",
       color: "#C5C6C7",
@@ -17,6 +18,7 @@ const Footer = () => {
       flex: 1,
       display: "flex",
       alignItems: "center",
+      margin: "0px 20px",
     },
     copyright: {
       margin: "0px 10px",

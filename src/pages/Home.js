@@ -4,10 +4,12 @@ import Navbar from "../components/Navbar";
 import RandomMeal from "../components/RandomMeal";
 import SideMenu from "../components/SideMenu";
 import { makeStyles } from "@mui/styles";
+import Footer from "../components/Footer";
 
 const useStyles = makeStyles({
+  page: { height: "100vh", display: "flex", flexDirection: "column" },
   container: {
-    height: "100vh",
+    height: "100%",
     width: "100%",
     display: "flex",
   },
@@ -22,7 +24,7 @@ const useStyles = makeStyles({
     backgroundColor: "white",
     display: "flex",
     justifyContent: "center",
-    maxHeight: "100%",
+    overflow: "auto",
   },
 });
 const Home = () => {
@@ -51,7 +53,7 @@ const Home = () => {
   const classes = useStyles();
 
   return (
-    <div>
+    <Box className={classes.page}>
       <Navbar />
       <Box className={classes.container}>
         <Box className={classes.selectorContainer}>
@@ -68,7 +70,8 @@ const Home = () => {
           ) : null}
         </Box>
       </Box>
-    </div>
+      <Footer />
+    </Box>
   );
 };
 

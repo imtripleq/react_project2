@@ -23,7 +23,6 @@ const Contact = () => {
       position: "absolute",
     },
     wrapper: {
-      height: "100%",
       padding: "50px",
       display: "flex",
       justifyContent: "center",
@@ -114,8 +113,8 @@ const Contact = () => {
       <Box className={classes.container}>
         <Box className={classes.bg}></Box>
         <Box className={classes.wrapper}>
-          <Box className={classes.left}>
-            {/* <Box className={classes.info}>
+          {/* <Box className={classes.left}>
+            <Box className={classes.info}>
               <Box className={classes.infoItem}>
                 <Phone className={classes.icon} />
                 +61 4 2695 8742
@@ -126,56 +125,56 @@ const Contact = () => {
               <Box className={classes.infoItem}>
                 <LocationOn className={classes.icon} /> Sydney , NSW
               </Box>
-            </Box> */}
-          </Box>
-          <Box className={classes.right}>
-            <Box className={classes.desc}>
-              <Typography variant="body1">
-                Please use the form below to send me message.
-              </Typography>
-              <form
-                ref={formRef}
-                onSubmit={handleSubmit}
-                className={classes.form}
-              >
-                <input
-                  className={classes.input}
-                  type="text"
-                  placeholder="Name"
-                  name="user_name"
-                />
-                <input
-                  className={classes.input}
-                  type="text"
-                  placeholder="Subject"
-                  name="user_subject"
-                />
-                <input
-                  className={classes.input}
-                  type="text"
-                  placeholder="Email"
-                  name="user_email"
-                />
-                <textarea
-                  className={classes.textarea}
-                  rows="5"
-                  placeholder="Message"
-                  name="message"
-                />
-                <Button className={classes.button} type="submit" style={{}}>
-                  Submit
-                </Button>
-
-                {done && (
-                  <Done
-                    color="success"
-                    sx={{ margin: "20px 0px", marginRight: "10px" }}
-                  />
-                )}
-                {done && "Submitted! Thank you!"}
-              </form>
             </Box>
+          </Box> */}
+          {/* <Box className={classes.right}> */}
+          <Box className={classes.desc}>
+            <Typography variant="body1">
+              Please use the form below to send me message.
+            </Typography>
+            <form
+              ref={formRef}
+              onSubmit={handleSubmit}
+              className={classes.form}
+            >
+              <input
+                className={classes.input}
+                type="text"
+                placeholder="Name"
+                name="user_name"
+              />
+              <input
+                className={classes.input}
+                type="text"
+                placeholder="Subject"
+                name="user_subject"
+              />
+              <input
+                className={classes.input}
+                type="text"
+                placeholder="Email"
+                name="user_email"
+              />
+              <textarea
+                className={classes.textarea}
+                rows="5"
+                placeholder="Message"
+                name="message"
+              />
+              <Button className={classes.button} type="submit" style={{}}>
+                Submit
+              </Button>
+
+              {done && (
+                <Done
+                  color="success"
+                  sx={{ margin: "20px 0px", marginRight: "10px" }}
+                />
+              )}
+              {done && "Submitted! Thank you!"}
+            </form>
           </Box>
+          {/* </Box> */}
         </Box>
       </Box>
     </div>

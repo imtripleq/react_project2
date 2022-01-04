@@ -9,7 +9,6 @@ const useStyles = makeStyles({
     backgroundColor: "white",
     display: "flex",
     justifyContent: "center",
-    maxHeight: "100%",
   },
   cardContainer: {
     margin: "10px 10px",

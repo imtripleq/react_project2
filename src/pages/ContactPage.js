@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { width } from "@mui/system";
 import React from "react";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
@@ -14,6 +15,11 @@ const useStyles = makeStyles({
   },
   navContainer: {},
   contactContainer: {},
+  contact: {
+    alignItems: "center",
+    justifyContent: "center",
+    display: "flex",
+  },
   footerContainer: {},
 });
 
@@ -25,7 +31,9 @@ const ContactPage = () => {
         <Navbar />
       </Box>
       <Box className={classes.contactContainer}>
-        <Contact />
+        <Box className={classes.contact}>
+          <Contact />
+        </Box>
       </Box>
       <Box className={classes.footerContainer}>
         <Footer />

@@ -24,20 +24,23 @@ const useStyles = makeStyles({
   },
 });
 
-const ListMeal = ({ posts, loading }) => {
+const ListMeal = ({ posts, loading, handleRecipe }) => {
   const classes = useStyles();
   if (!loading) {
     return <h2>Pick your Cuisine</h2>;
   }
-  console.log(posts);
-  console.log(posts.results);
+
   return (
     <div>
       <Box className={classes.cardContainer}>
         {posts.map((item) => {
           return (
             <Box className={classes.card} key={item.id}>
-              <FoodCard image={item.image} title={item.title} />
+              <FoodCard
+                image={item.image}
+                title={item.title}
+                handleRecipe={() => handleRecipe(item.id)}
+              />
             </Box>
           );
         })}

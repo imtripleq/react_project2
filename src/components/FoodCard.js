@@ -10,6 +10,7 @@ import {
   Collapse,
   IconButton,
   Typography,
+  Button,
 } from "@mui/material";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -30,7 +31,14 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-const FoodCard = ({ image, summary, instructions, title }) => {
+const FoodCard = ({
+  image,
+  summary,
+  instructions,
+  title,
+  handleRecipe,
+  id,
+}) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -49,14 +57,15 @@ const FoodCard = ({ image, summary, instructions, title }) => {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <ExpandMore
+          {/* <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
             aria-expanded={expanded}
             aria-label="show more"
           >
             <ExpandMoreIcon />
-          </ExpandMore>
+          </ExpandMore> */}
+          <Button onClick={() => handleRecipe()}>Recipe</Button>
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent className={classes.extraCardContent}>
