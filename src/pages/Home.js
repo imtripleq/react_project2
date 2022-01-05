@@ -60,7 +60,7 @@ const Home = () => {
           <SideMenu pickNow={handleClick} />
         </Box>
         <Box className={classes.foodContainer}>
-          {!loading ? <Welcome /> : null}
+          {!loading && !recipeLoading ? <Welcome /> : null}
           {loading ? (
             <RandomMeal
               food={recipe}
