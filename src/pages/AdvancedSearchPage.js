@@ -37,23 +37,26 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   listMealContainer: {
-    flex: 3,
-    backgroundColor: "white",
+    backgroundColor: "",
     display: "flex",
+    height: "100%",
+    width: "100%",
     justifyContent: "center",
-    maxHeight: "80%",
   },
   footerContainer: {
     [theme.breakpoints.between("xs", "sm")]: {
       display: "none",
     },
   },
+  pagination: {
+    margin: "20px",
+  },
 }));
 const AdvancedSearch = () => {
   const [posts, setPosts] = useState({ results: [] });
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
+  const [postsPerPage] = useState(3);
   const [recipe, setRecipe] = useState({ results: [] });
   const [recipeLoading, setRecipeLoading] = useState(false);
 

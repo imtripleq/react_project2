@@ -1,34 +1,50 @@
 import { makeStyles } from "@mui/styles";
 import React from "react";
-import { styled } from "@mui/material/styles";
 import {
   Card,
   CardHeader,
   CardMedia,
   CardContent,
   CardActions,
-  Collapse,
-  IconButton,
   Typography,
   Button,
+  CardActionArea,
+  Box,
 } from "@mui/material";
 
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
-const useStyles = makeStyles({
-  foodList: { maxHeight: "100%" },
-  extraCardContent: {},
-});
-
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
+const useStyles = makeStyles((theme) => ({
+  foodList: {},
+  card: { width: "100%" },
+  cardHeader: {
+    display: "flex",
+    height: "120px",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: "5px 10px",
+    [theme.breakpoints.between("xs", "sm")]: {
+      margin: "0px 0px",
+      height: "100%",
+    },
+  },
+  header: {
+    [theme.breakpoints.between("xs", "sm")]: {
+      fontSize: "13pt!important",
+    },
+  },
+  img: {
+    [theme.breakpoints.between("xs", "sm")]: {
+      height: "100px",
+    },
+  },
+  cardActions: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "30px 20px!important",
+    [theme.breakpoints.between("xs", "sm")]: {
+      padding: "0px 0px!important",
+    },
+  },
 }));
 
 const FoodCard = ({
@@ -40,39 +56,32 @@ const FoodCard = ({
   id,
 }) => {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   return (
     <div className={classes.foodList}>
-      <Card className={classes.card} sx={{ maxWidth: 345 }}>
-        <CardHeader title={title} />
-        <CardMedia component="img" height="194" image={image} alt={title} />
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            {summary}
-          </Typography>
-        </CardContent>
-        <CardActions disableSpacing>
-          {/* <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </ExpandMore> */}
-          <Button onClick={() => handleRecipe()}>Recipe</Button>
-        </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent className={classes.extraCardContent}>
-            <Typography paragraph>Method:</Typography>
-            <Typography paragraph>{instructions}</Typography>
-          </CardContent>
-        </Collapse>
+      <Card
+        className={classes.card}
+        raised
+        sx={{ maxWidth: 300, minWidth: 240 }}
+      >
+        <CardActionArea onClick={() => handleRecipe()}>
+          <Box className={classes.cardHeader}>
+            <Typography className={classes.header} variant="h5">
+              {title}
+            </Typography>
+          </Box>
+          <CardMedia
+            className={classes.img}
+            component="img"
+            height="300"
+            image={image}
+            alt={title}
+          />
+
+          <CardActions className={classes.cardActions} disableSpacing>
+            <Button onClick={() => handleRecipe()}>Recipe</Button>
+          </CardActions>
+        </CardActionArea>
       </Card>
     </div>
   );
