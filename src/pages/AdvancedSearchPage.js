@@ -8,12 +8,15 @@ import ListMeal from "../components/ListMeal";
 import Footer from "../components/Footer";
 import CustomRecipe from "../components/CustomRecipe";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   page: { height: "100vh", display: "flex", flexDirection: "column" },
   container: {
     height: "100%",
     width: "100%",
     display: "flex",
+    [theme.breakpoints.between("xs", "sm")]: {
+      flexDirection: "column",
+    },
   },
   selectorContainer: {
     flex: 1,
@@ -22,6 +25,9 @@ const useStyles = makeStyles({
     maxWidth: "400px",
     width: "200px",
     backgroundColor: "#F4F3F3",
+    [theme.breakpoints.between("xs", "sm")]: {
+      width: "100%",
+    },
   },
   foodContainer: {
     backgroundColor: "white",
@@ -37,7 +43,12 @@ const useStyles = makeStyles({
     justifyContent: "center",
     maxHeight: "80%",
   },
-});
+  footerContainer: {
+    [theme.breakpoints.between("xs", "sm")]: {
+      display: "none",
+    },
+  },
+}));
 const AdvancedSearch = () => {
   const [posts, setPosts] = useState({ results: [] });
   const [loading, setLoading] = useState(false);
