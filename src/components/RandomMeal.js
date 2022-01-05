@@ -15,17 +15,14 @@ const useStyles = makeStyles({
   },
 });
 
-const RandomMeal = ({ image, summary, instructions, title }) => {
+const RandomMeal = ({ food, handleRecipe }) => {
   const classes = useStyles();
+  const { image, title } = food;
+
   return (
     <div>
       <Box className={classes.cardContainer}>
-        <FoodCard
-          image={image}
-          summary={summary}
-          instructions={instructions}
-          title={title}
-        />
+        <FoodCard image={image} title={title} handleRecipe={handleRecipe} />
       </Box>
     </div>
   );

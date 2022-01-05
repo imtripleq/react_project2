@@ -2,9 +2,7 @@ import { makeStyles } from "@mui/styles";
 import React from "react";
 import {
   Card,
-  CardHeader,
   CardMedia,
-  CardContent,
   CardActions,
   Typography,
   Button,
@@ -47,14 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const FoodCard = ({
-  image,
-  summary,
-  instructions,
-  title,
-  handleRecipe,
-  id,
-}) => {
+const FoodCard = ({ image, title, handleRecipe }) => {
   const classes = useStyles();
 
   return (
