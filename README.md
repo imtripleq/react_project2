@@ -18,7 +18,7 @@ Pick your meal and click again to go to recipe page.
 
 ## Credits
 
-All data are fetch from spoonacular API
+API provider thanks to spoonacular API
 Website : https://spoonacular.com/food-api
 
 This project is created by Dennis Khor.
